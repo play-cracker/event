@@ -739,7 +739,7 @@
         if (i < text.length) {
           loaderTitle.textContent += text.charAt(i);
           i++;
-          setTimeout(type, 90);
+          setTimeout(type, 100);
         }
       }
       type();
@@ -896,7 +896,7 @@
           if (j < descText.length) {
             heroDesc.textContent += descText.charAt(j);
             j++;
-            setTimeout(typeDesc, 5);
+            setTimeout(typeDesc, 60);
           } else {
             clearInterval(particleInterval);
             setTimeout(() => {
@@ -1815,7 +1815,7 @@
   window.addEventListener('load', () => {
     const loader = document.getElementById('page-loader');
     if (loader) {
-      setTimeout(() => loader.classList.add('hidden'), 100);
+      setTimeout(() => loader.classList.add('hidden'), 3500);
     }
   });
 

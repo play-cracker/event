@@ -823,6 +823,7 @@
         <p class="hero-text" id="hero-description" style="font-family: 'Priestacy', 'Baloo 2', cursive; font-size: 1.7rem; margin: 2rem 0; line-height: 1.9; white-space: pre-wrap; position: relative; z-index: 2; min-height: 450px;">
         </p>
       </div>
+      <div id="hero-divider" style="width: min(640px, 86%); height: 1px; background: linear-gradient(90deg, transparent, rgba(255, 196, 135, 0.6), transparent); margin: 1.5rem auto; opacity: 0; transition: opacity 0.8s ease;"></div>
       <style>
         .typing-particle {
           position: absolute;
@@ -903,6 +904,14 @@
               particlesContainer.style.opacity = '0';
               particlesContainer.style.transition = 'opacity 1s ease';
             }, 500);
+            
+            // Show divider line after typing completes
+            setTimeout(() => {
+              const heroDivider = document.getElementById('hero-divider');
+              if (heroDivider) {
+                heroDivider.style.opacity = '0.7';
+              }
+            }, 300);
             
             // Add logo stamp after typing completes - positioned below text
             setTimeout(() => {

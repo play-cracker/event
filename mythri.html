@@ -1,0 +1,2044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mythri Events | Housewarming & Birthday Specialists</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #080611;
+      --card: rgba(16, 13, 34, 0.96);
+      --primary: #ff9a3c;
+      --accent: #ff5fa2;
+      --teal: #3dccb7;
+      --text: #f5f4fa;
+      --muted: #c5c1d7;
+      --soft: rgba(255, 255, 255, 0.05);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      color: var(--text);
+      background: radial-gradient(circle at top, rgba(255, 154, 60, 0.08), transparent 55%),
+        radial-gradient(circle at 30% 10%, rgba(255, 95, 162, 0.1), transparent 35%),
+        radial-gradient(circle at 75% 8%, rgba(61, 204, 183, 0.16), transparent 40%),
+        linear-gradient(135deg, #040208, #0b0616 45%, #05030a);
+      min-height: 100vh;
+      line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.38;
+      pointer-events: none;
+      z-index: -1;
+      animation: float 16s ease-in-out infinite;
+    }
+
+    body::before {
+      background: radial-gradient(circle, rgba(255, 95, 162, 0.9), transparent 55%);
+      bottom: -160px;
+      left: -120px;
+      animation-delay: -4s;
+    }
+
+    body::after {
+      background: radial-gradient(circle, rgba(61, 204, 183, 0.9), transparent 55%);
+      top: 12vh;
+      right: -140px;
+    }
+
+    @keyframes float {
+      0% { transform: translate3d(0, 0, 0) scale(0.9); }
+      50% { transform: translate3d(20px, -30px, 0) scale(1.05); }
+      100% { transform: translate3d(0, 0, 0) scale(0.9); }
+    }
+
+    img { max-width: 100%; display: block; height: auto; }
+    a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+
+    .container { width: 92%; max-width: 1180px; margin: 0 auto; }
+    header .container {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+    }
+
+    /* Loader */
+    .loader-overlay {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at top, rgba(255, 154, 60, 0.18), transparent 55%),
+        linear-gradient(160deg, #08040f, #120823);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1.5rem;
+      z-index: 9999;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    .loader-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loader-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      max-width: 520px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .loader-logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      animation: loader-pulse 3s ease-in-out infinite;
+    }
+
+    .loader-logo img {
+      width: min(450px, 80vw);
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.55));
+      image-rendering: -webkit-optimize-contrast;
+    }
+
+    @keyframes loader-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background:
+        radial-gradient(circle at top left, rgba(255, 154, 60, 0.14), transparent 55%),
+        radial-gradient(circle at top right, rgba(255, 95, 162, 0.18), transparent 55%),
+        linear-gradient(90deg, rgba(4, 3, 16, 0.96), rgba(9, 4, 28, 0.96));
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6);
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 120%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,154,60,0.7), rgba(255,95,162,0.7), rgba(61,204,183,0.7), transparent);
+      opacity: 0.6;
+      box-shadow: 0 0 10px rgba(255, 154, 60, 0.5);
+      pointer-events: none;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.2rem 0;
+      position: relative;
+      justify-content: flex-start;
+    }
+
+    .logo { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+
+    .logo-mark {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 110px;
+      height: 110px;
+      padding: 0.2rem;
+    }
+
+    .logo-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+      animation: logo-spin 6s linear infinite;
+      transform-style: preserve-3d;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+      justify-content: center; /* vertically center text next to logo */
+      transform: translateY(-5px); /* nudge text a little up */
+    }
+
+    @keyframes logo-spin {
+      0% { transform: rotateY(0deg); }
+      50% { transform: rotateY(180deg); }
+      100% { transform: rotateY(360deg); }
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-left: 20rem;
+      margin-right: auto;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    #mobile-nav-toggle {
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-size: 2.1rem;
+      display: none;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .nav-links a {
+      position: relative;
+      padding: 0.35rem 0.4rem;
+      border-radius: 999px;
+      transition: color 0.18s ease, transform 0.18s ease, background 0.18s ease;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0.1rem;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      opacity: 0;
+      transition: width 0.22s ease, opacity 0.22s ease;
+    }
+    .nav-links a:hover {
+      color: var(--text);
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .nav-links a:hover::after {
+      width: 70%;
+      opacity: 1;
+    }
+    
+    .nav .btn-primary {
+      flex-shrink: 0;
+      margin-right: 2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1.4rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      white-space: nowrap;
+      min-height: 44px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-primary { background: linear-gradient(135deg, var(--primary), var(--accent)); color: var(--text); box-shadow: 0 12px 28px rgba(255, 95, 162, 0.35); }
+    .desktop-cta { margin-left: 1.2rem; }
+    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-outline { border-color: rgba(255, 255, 255, 0.22); color: var(--text); }
+    .btn-outline:hover { background: rgba(255, 255, 255, 0.05); }
+
+    main { padding-bottom: 4rem; }
+    section {
+      padding: 4.2rem 0;
+      position: relative;
+      z-index: 1;
+    }
+    /* Decorative divider between sections */
+    section::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -0.4rem;
+      width: min(640px, 86%);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 196, 135, 0.6), transparent);
+      opacity: 0.7;
+      pointer-events: none;
+      transition: height 0.35s ease, opacity 0.35s ease;
+    }
+    /* Active section gets a bigger, brighter line */
+    section.section-divider-active::after {
+      height: 4px;
+      opacity: 1;
+    }
+    /* Avoid extra line after last section */
+    main > section:last-of-type::after {
+      display: none;
+    }
+
+    h1, h2, h3, h4 { font-family: "Baloo 2", "Inter", sans-serif; letter-spacing: 0.01em; color: var(--text); }
+
+    .section-header { display: flex; justify-content: space-between; gap: 1.5rem; align-items: flex-end; flex-wrap: wrap; margin-bottom: 2.4rem; }
+    .section-title { font-size: clamp(1.8rem, 2.8vw, 2.4rem); margin-bottom: 0.3rem; }
+    .section-subtitle { color: var(--muted); max-width: 520px; font-size: 0.95rem; }
+
+    .pill { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 999px; padding: 0.2rem 0.8rem; }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.8rem; }
+    .card { border-radius: 22px; padding: 1.8rem; border: 1px solid rgba(255, 255, 255, 0.05); background: var(--card); box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55); transition: transform 0.3s ease; }
+    .card p { color: var(--muted); font-size: 0.92rem; line-height: 1.7; }
+
+    .hero { 
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+    .hero-grid { display: flex; flex-direction: column; align-items: flex-start; text-align: left; max-width: 1000px; }
+    .hero-title { font-size: clamp(2.4rem, 4.1vw, 3.5rem); line-height: 1.2; margin-bottom: 1.2rem; }
+    .hero-title span { background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero-text { color: var(--muted); margin-bottom: 1.5rem; font-size: 1.05rem; line-height: 1.8; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.2rem; }
+
+    .hero-stat-board { background: rgba(11, 9, 24, 0.85); border-radius: 24px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 34px 90px rgba(0, 0, 0, 0.8); margin-top: 2rem; max-width: 900px; }
+    .stat-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; }
+    .stat-card { padding: 1rem 1.5rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.02); text-align: center; min-width: 140px; }
+    .stat-card strong { display: block; font-size: 1.6rem; }
+    .stat-card span { font-size: 0.85rem; color: var(--muted); }
+
+    .clients { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 18px; padding: 1.4rem; display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; margin-top: 2rem; max-width: 900px; }
+    .client-logos { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 0.8rem; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem; letter-spacing: 0.08em; }
+
+    .service-icon { width: 48px; height: 48px; border-radius: 16px; background: rgba(255, 255, 255, 0.04); display: grid; place-items: center; font-size: 1.3rem; margin-bottom: 0.8rem; }
+    .service-list { margin-top: 0.6rem; list-style: none; color: var(--muted); font-size: 0.85rem; }
+    .service-list li { margin-bottom: 0.3rem; }
+    
+    .grid-3 > .card {
+      position: relative;
+      overflow: visible;
+    }
+    
+    .grid-3 > .card::before {
+      content: '';
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(255, 154, 60, 0.8), 0 0 40px rgba(255, 154, 60, 0.5);
+      animation: moveBorderLight 4s linear infinite;
+      z-index: 10;
+    }
+    
+    @keyframes moveBorderLight {
+      0% { top: 0; left: 0; }
+      25% { top: 0; left: 100%; }
+      50% { top: 100%; left: 100%; }
+      75% { top: 100%; left: 0; }
+      100% { top: 0; left: 0; }
+    }
+    
+    .grid-3 > .card:nth-child(1)::before { animation-delay: 0s; }
+    .grid-3 > .card:nth-child(2)::before { animation-delay: 1.3s; }
+    .grid-3 > .card:nth-child(3)::before { animation-delay: 2.6s; }
+
+    .experience-grid { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 2rem; }
+    .experience-card { border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.06); background: rgba(255, 255, 255, 0.02); padding: 2rem; }
+    .timeline { list-style: none; border-left: 1px dashed rgba(255, 255, 255, 0.3); padding-left: 1.4rem; }
+    .timeline li { margin-bottom: 1.3rem; position: relative; }
+    .timeline li::before { content: ""; position: absolute; left: -1.8rem; top: 0.35rem; width: 12px; height: 12px; border-radius: 50%; background: var(--primary); box-shadow: 0 0 12px rgba(255, 154, 60, 0.7); }
+
+    .portfolio-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+    .portfolio-card { border-radius: 20px; overflow: hidden; position: relative; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); }
+    .portfolio-card figure { position: relative; padding-top: 62%; overflow: hidden; }
+    .portfolio-card figure img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .portfolio-card figure::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.7)); }
+    .portfolio-card figcaption { position: absolute; bottom: 1.2rem; left: 1.2rem; right: 1.2rem; }
+
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; grid-auto-rows: 150px; }
+    .collage-item { border-radius: 20px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.06); background: rgba(255, 255, 255, 0.02); box-shadow: 0 18px 44px rgba(0, 0, 0, 0.6); position: relative; }
+    .collage-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .collage-item:hover img { transform: scale(1.06); }
+    .collage-item.wide { grid-column: span 2; }
+    .collage-item.tall { grid-row: span 2; }
+
+    .metrics-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-top: 2rem; }
+    .metric { padding: 1.3rem; border-radius: 20px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.04); text-align: center; }
+    .metric strong { display: block; font-size: 2rem; }
+    .metric span { font-size: 0.82rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+    .testimonial { padding: 1.6rem; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(255, 255, 255, 0.02); display: flex; flex-direction: column; gap: 1rem; }
+    .testimonial p { color: var(--muted); font-size: 0.95rem; }
+    .rating { color: #ffd166; font-size: 1.1rem; }
+
+    .packages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+    .package-card { border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.08); padding: 2rem 1.6rem; background: rgba(10, 12, 23, 0.9); display: flex; flex-direction: column; gap: 1rem; transition: border-color 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease; }
+    .package-card:hover { border-color: rgba(255, 154, 60, 0.4); box-shadow: 0 18px 45px rgba(255, 154, 60, 0.15); transform: translateY(-4px); }
+    .package-card.highlight { border-color: rgba(255, 154, 60, 0.6); box-shadow: 0 24px 60px rgba(255, 154, 60, 0.25); }
+    .package-card.highlight:hover { border-color: rgba(255, 154, 60, 0.8); box-shadow: 0 28px 70px rgba(255, 154, 60, 0.35); }
+    .package-card.auto-highlight { border-color: rgba(255, 154, 60, 0.7); box-shadow: 0 22px 55px rgba(255, 154, 60, 0.3); transform: translateY(-2px); }
+    .package-list { list-style: none; color: var(--muted); font-size: 0.9rem; }
+    .package-list li { margin-bottom: 0.4rem; position: relative; padding-left: 1.1rem; }
+    .package-list li::before { content: "✔"; position: absolute; left: 0; color: var(--teal); font-size: 0.85rem; }
+
+    .contact-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+    form { border-radius: 22px; background: rgba(10, 10, 18, 0.92); padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 24px 70px rgba(0, 0, 0, 0.65); }
+    .form-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+    label { font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    input, select, textarea { width: 100%; padding: 0.75rem 0.9rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.14); background: rgba(4, 5, 14, 0.95); color: var(--text); font-size: 0.95rem; outline: none; transition: border 0.15s ease, box-shadow 0.15s ease; -webkit-appearance: none; appearance: none; }
+    input:focus, textarea:focus, select:focus { border-color: var(--primary); box-shadow: 0 0 0 1px rgba(255, 154, 60, 0.5); }
+    textarea { resize: vertical; min-height: 140px; }
+    select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23c5c1d7' d='M6 9L1 4h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.5rem; }
+    .contact-aside { border-radius: 22px; border: 1px solid rgba(255, 255, 255, 0.05); padding: 2rem; background: rgba(255, 255, 255, 0.02); display: flex; flex-direction: column; gap: 1.2rem; }
+    .contact-card { padding: 1rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(0, 0, 0, 0.25); }
+
+    .faq { margin-top: 2rem; }
+    .faq-item { border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 1rem 0; cursor: pointer; -webkit-tap-highlight-color: transparent; transition: background 0.2s ease; }
+    .faq-item:active { background: rgba(255, 255, 255, 0.02); }
+    .faq-item h4 { font-size: 1rem; display: flex; justify-content: space-between; align-items: center; min-height: 44px; }
+    .faq-item p { color: var(--muted); font-size: 0.9rem; margin-top: 0.5rem; display: none; line-height: 1.7; }
+    .faq-item.active p { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+    footer { border-top: 1px solid rgba(255, 255, 255, 0.06); padding: 1.6rem 0 2rem; color: var(--muted); font-size: 0.82rem; }
+    .footer-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-links { display: flex; gap: 1.2rem; font-size: 0.84rem; }
+
+    .floating-cta { position: fixed; bottom: 1.6rem; right: 1.6rem; z-index: 60; }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .experience-grid,
+      .contact-grid { grid-template-columns: 1fr; }
+
+      .grid-3,
+      .portfolio-grid,
+      .testimonials-grid,
+      .packages,
+      .metrics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 768px) {
+      #mobile-nav-toggle {
+        display: inline-flex;
+        padding: 0.35rem;
+        transition: transform 0.2s ease;
+        margin-left: auto;
+      }
+      #mobile-nav-toggle:active { transform: scale(0.9); }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: rgba(10, 9, 23, 0.98);
+        backdrop-filter: blur(20px);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        margin: 0 !important;
+        padding: 1.2rem 1rem;
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.65);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        gap: 0.5rem;
+        z-index: 100;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .nav-links.open { 
+        display: flex !important;
+        visibility: visible;
+        opacity: 1;
+      }
+      .nav-links a {
+        padding: 0.8rem 1rem !important;
+        border-radius: 8px !important;
+        transition: background 0.2s ease, color 0.2s ease !important;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .nav-links a:hover,
+      .nav-links a:active,
+      .nav-links a:focus {
+        background: rgba(255, 154, 60, 0.15) !important;
+        color: var(--primary) !important;
+        transform: none !important;
+        outline: none;
+      }
+      .nav-links a:active {
+        background: rgba(255, 154, 60, 0.25) !important;
+      }
+      
+      /* Mobile responsive typing section */
+      .hero-title {
+        font-size: 1.8rem !important;
+        line-height: 1.3 !important;
+      }
+      #hero-description {
+        font-size: 1.35rem !important;
+        line-height: 1.7 !important;
+        min-height: 340px !important;
+      }
+      .typing-particle {
+        width: 150px !important;
+        height: 150px !important;
+        font-size: 0.9rem;
+        color: var(--text);
+        display: block;
+        width: 100%;
+      }
+      
+      /* Reduce frame spacing on mobile */
+      .hero-grid > div[style*="grid-template-columns"] {
+        margin: 0.3rem 0 !important;
+        gap: 0.6rem !important;
+      }
+      .hero-stat-board,
+      .hero-grid > div[style*="grid-template-columns"] > div {
+        padding: 0.9rem !important;
+      }
+      .nav-links a::after { display: none; }
+      section { padding: 2.5rem 0; }
+      .container { width: 95%; }
+
+      header .nav .btn.btn-primary { display: none; }
+      .logo-mark { width: 60px; height: 60px; }
+      .logo { gap: 0.3rem; }
+      
+      /* Mobile testimonials carousel */
+      .testimonials-scroll-container .testimonial {
+        flex: 0 0 85% !important;
+      }
+      .testimonials-scroll-container::before {
+        width: 85% !important;
+      }
+      
+      /* Mobile hero logo stamp */
+      .hero-logo-stamp img {
+        width: 140px !important;
+        height: 140px !important;
+      }
+      
+      .grid-3,
+      .portfolio-grid,
+      .testimonials-grid,
+      .packages,
+      .metrics-grid { grid-template-columns: 1fr; }
+      .gallery-grid { 
+        grid-template-columns: repeat(2, minmax(0, 1fr)); 
+        grid-auto-rows: 150px;
+      }
+      .collage-item.wide { grid-column: span 1; }
+      .collage-item.tall { grid-row: span 1; }
+      
+      /* Stack two-column frames vertically on mobile */
+      #hero-section-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+      }
+      
+      /* Hide list items on mobile, show typing animation instead */
+      #hero-section-grid ul {
+        display: none !important;
+      }
+      #services-typing-mobile {
+        display: block !important;
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.8;
+        min-height: 3rem;
+      }
+      
+      /* Adjust mobile layout - keep font sizes same as desktop */
+      #hero-section-grid h3 {
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        font-size: 1.1rem !important;
+      }
+      #hero-section-grid > div {
+        padding: 1.5rem !important;
+      }
+      .location-dots {
+        font-size: 0.9rem !important;
+      }
+      .location-dots .location-name {
+        font-size: 0.9rem !important;
+      }
+      div[style*="Home Celebration Command Centre"] {
+        padding: 0.15rem 0.15rem !important;
+        margin-top: 0rem !important;
+      }
+      div[style*="Home Celebration Command Centre"] h3 {
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        font-size: 0.35rem !important;
+        letter-spacing: -0.05em !important;
+        transform: scaleX(0.6) !important;
+        transform-origin: left !important;
+        max-width: 100% !important;
+        display: block !important;
+      }
+      div[style*="Home Celebration Command Centre"] p {
+        font-size: 0.85rem !important;
+        line-height: 1.6 !important;
+      }
+      div[style*="Home Celebration Command Centre"] strong {
+        font-size: 1rem !important;
+      }
+      
+      .hero { padding-top: 2rem; }
+      .hero-title { font-size: 2rem; }
+      .hero-text { font-size: 0.95rem; }
+      .hero-actions { flex-direction: column; width: 100%; }
+      .hero-actions .btn { width: 100%; justify-content: center; }
+      
+      .floating-cta { 
+        left: 50%;
+        transform: translateX(-50%);
+        right: auto;
+        bottom: 1rem;
+        font-size: 0.9rem !important;
+        padding: 0.7rem 1.2rem !important;
+        width: auto;
+        text-align: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+      .floating-cta.visible {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      
+      .hero-stat-board { order: -1; }
+      .stat-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+      .stat-card { padding: 0.8rem; }
+      
+      .section-title { font-size: 1.8rem; }
+      .section-header { flex-direction: column; align-items: flex-start; }
+      
+      .card { padding: 1.2rem; }
+      .service-icon { width: 40px; height: 40px; font-size: 1.1rem; }
+      
+      .experience-card { padding: 1.5rem; }
+      .timeline { padding-left: 1rem; }
+      
+      .portfolio-card figcaption { bottom: 0.8rem; left: 0.8rem; right: 0.8rem; }
+      
+      .metric { padding: 1rem; }
+      .metric strong { font-size: 1.5rem; }
+      
+      .testimonial { padding: 1.2rem; }
+      
+      .package-card { padding: 1.5rem 1.2rem; }
+      
+      .contact-grid { gap: 1.5rem; }
+      form { padding: 1.5rem; }
+      .form-row { grid-template-columns: 1fr; gap: 0.8rem; }
+      .contact-aside { padding: 1.5rem; }
+      
+      .footer-row { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+      .footer-links { flex-wrap: wrap; }
+      
+      .logo-mark { width: 60px; height: 60px; }
+      .logo { gap: 0.3rem; }
+    }
+
+    @media (max-width: 520px) {
+      .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 180px; }
+      .collage-item.wide, .collage-item.tall { grid-column: span 1; grid-row: span 1; }
+      
+      .hero-title { font-size: 1.6rem; line-height: 1.2; }
+      .section-title { font-size: 1.5rem; }
+      
+      .btn { padding: 0.5rem 1rem; font-size: 0.85rem; }
+      
+      .logo-mark { width: 50px; height: 50px; }
+      
+      .stat-card strong { font-size: 1.3rem; }
+      
+      .metric strong { font-size: 1.3rem; }
+      .metric span { font-size: 0.75rem; }
+      
+      /* Extra small mobile - typing section */
+      .hero-title {
+        font-size: 1.4rem !important;
+        line-height: 1.25 !important;
+      }
+      #hero-description {
+        font-size: 1.15rem !important;
+        line-height: 1.6 !important;
+        min-height: 290px !important;
+      }
+      .typing-particle {
+        width: 100px !important;
+        height: 100px !important;
+      }
+      
+      input, select, textarea { font-size: 0.9rem; padding: 0.65rem 0.8rem; }
+    }
+</style>
+<link href="https://fonts.cdnfonts.com/css/priestacy" rel="stylesheet" />
+</head>
+<body>
+<div class="loader-overlay" id="page-loader" aria-live="polite">
+  <div class="loader-inner">
+    <div class="loader-logo">
+      <img src="images/mythri-loading.png" alt="Mythri Events gold emblem" style="background: none; border-radius: 0; box-shadow: none;" />
+    </div>
+    <div class="loader-title" id="loader-title" style="font-family: 'Priestacy', 'Baloo 2', cursive; font-size: 3.5rem; letter-spacing: 0.14em; color: #ffdda4; text-shadow: 0 1px 15px rgba(255,154,60,0.75);">Mythri Events</div>
+    <script>
+      // Typing effect for loader title
+      const loaderTitle = document.getElementById('loader-title');
+      const text = "Mythri Events";
+      loaderTitle.textContent = "";
+      let i = 0;
+      function type() {
+        if (i < text.length) {
+          loaderTitle.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, 90);
+        }
+      }
+      type();
+    </script>
+    <style>
+      @media (max-width: 420px) {
+        .loader-title {
+          font-size: 2.1rem !important;
+        }
+      }
+      @media (max-width: 768px) {
+        .loader-logo img {
+          width: 70vw !important;
+          max-width: 320px !important;
+        }
+        .loader-title {
+          font-size: 2.3rem !important;
+        }
+      }
+      @media (max-width: 340px) {
+        .loader-title {
+          font-size: 1.4rem !important;
+        }
+      }
+    </style>
+  </div>
+</div>
+<header>
+  <div class="container nav" style="flex-wrap: wrap;">
+    <div class="logo">
+      <div class="logo-mark">
+        <img src="images/mythri-loading.png" alt="Mythri Events emblem" />
+      </div>
+      <div class="logo-text" style="font-family: 'Priestacy', 'Baloo 2', cursive; font-size: 2.5rem; letter-spacing: 0.12em; color: #ffdda4; text-shadow: 0 1px 8px rgba(255,154,60,0.55); text-transform: none; white-space: nowrap;">
+        Mythri Events
+      </div>
+    </div>
+    <nav id="primary-nav" class="nav-links">
+      <a href="#portfolio">Stories</a>
+      <a href="#services">Services</a>
+      <a href="#experience">Process</a>
+      <a href="#gallery">Collage</a>
+      <a href="#packages">Packages</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="btn btn-primary desktop-cta">Plan a Celebration</a>
+    <button id="mobile-nav-toggle" aria-label="Open navigation">☰</button>
+  </div>
+  <style>
+    @media (max-width: 768px) {
+      .container.nav {
+        flex-wrap: nowrap;
+        gap: 0.5rem;
+        padding: 0.4rem 1rem;
+      }
+      .logo-text {
+        font-size: 1.6rem !important;
+      }
+      .desktop-cta { display: none; }
+    }
+    @media (max-width: 520px) {
+      .logo-text {
+        font-size: 1.2rem !important;
+      }
+      .logo-mark { width: 50px; height: 50px; }
+      #mobile-nav-toggle {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</header>
+   
+<main> 
+  <section class="hero" id="top">
+    <div class="container hero-grid">
+      <div class="pill">Event Planner</div>
+      <h1 class="hero-title">Housewarmings & Birthdays Designed for <span>Bengaluru Homes</span></h1>
+      
+      <div style="position: relative; min-height: 450px; height: auto;">
+        <div id="typing-particles" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 0; overflow: hidden;"></div>
+        <p class="hero-text" id="hero-description" style="font-family: 'Priestacy', 'Baloo 2', cursive; font-size: 1.7rem; margin: 2rem 0; line-height: 1.9; white-space: pre-wrap; position: relative; z-index: 2; min-height: 450px;">
+        </p>
+      </div>
+      <style>
+        .typing-particle {
+          position: absolute;
+          width: 400px;
+          height: 400px;
+          opacity: 0;
+          animation: fadeInOut 2s ease-in-out forwards;
+          pointer-events: none;
+        }
+        .typing-particle img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          opacity: 0.05;
+        }
+        @keyframes fadeInOut {
+          0% { opacity: 0; transform: scale(0.8); }
+          30% { opacity: 1; transform: scale(1); }
+          70% { opacity: 1; transform: scale(1); }
+          100% { opacity: 0; transform: scale(0.8); }
+        }
+        @keyframes fadeInStamp {
+          0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+          60% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+          100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+      </style>
+      <script>
+        // Typing effect for hero description with particles
+        const heroDesc = document.getElementById('hero-description');
+        const particlesContainer = document.getElementById('typing-particles');
+        const descText = "From traditional Griha Pravesh ceremonies to vibrant milestone birthdays, Mythri Events is a boutique event planner creating intimate home celebrations that feel personal, elegant, and effortlessly managed—we handle every detail so you can host with confidence and celebrate without stress, with décor, food coordination, entertainment, and guest flow thoughtfully planned and seamlessly executed for warm, memorable gatherings.\n\nTeam,\nMythri Events";
+        const particleImages = ['images/transparent_1.png', 'images/transparent_2.png','images/transparent_3.png', 'images/transparent_4.png', 'images/transparent_5.png', 'images/transparent_6.png'];
+        
+        heroDesc.textContent = "";
+        let j = 0;
+        let particleInterval;
+        let currentImageIndex = 0;
+        let isShowingParticle = false;
+        
+        function createParticle() {
+          if (isShowingParticle) return;
+          
+          isShowingParticle = true;
+          particlesContainer.innerHTML = '';
+          
+          const particle = document.createElement('div');
+          particle.className = 'typing-particle';
+          
+          // Random position - spread across entire area (accounting for 400px image size)
+          const randomTop = Math.random() * 60 + 5; // 5% to 65%
+          const randomLeft = Math.random() * 60 + 5; // 5% to 65%
+          particle.style.top = randomTop + '%';
+          particle.style.left = randomLeft + '%';
+          
+          const img = document.createElement('img');
+          // Random image selection
+          const randomImageIndex = Math.floor(Math.random() * particleImages.length);
+          img.src = particleImages[randomImageIndex];
+          img.alt = '';
+          particle.appendChild(img);
+          particlesContainer.appendChild(particle);
+          
+          // Wait for animation to complete plus gap before next image
+          setTimeout(() => {
+            isShowingParticle = false;
+          }, 5000); // 2s animation + 3s gap
+        }
+        
+        function typeDesc() {
+          if (j < descText.length) {
+            heroDesc.textContent += descText.charAt(j);
+            j++;
+            setTimeout(typeDesc, 5);
+          } else {
+            clearInterval(particleInterval);
+            setTimeout(() => {
+              particlesContainer.style.opacity = '0';
+              particlesContainer.style.transition = 'opacity 1s ease';
+            }, 500);
+            
+            // Add logo stamp after typing completes - positioned below text
+            setTimeout(() => {
+              const logoStamp = document.createElement('div');
+              logoStamp.className = 'hero-logo-stamp';
+              logoStamp.style.cssText = 'position: absolute; left: 50%; top: 70%; transform: translate(-50%, -50%); opacity: 0; animation: fadeInStamp 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; pointer-events: none; z-index: 0;';
+              logoStamp.innerHTML = '<img src="images/mythri-loading.png" alt="Mythri Events" style="width: 280px; height: 280px; opacity: 0.25;" />';
+              heroDesc.parentElement.appendChild(logoStamp);
+            }, 800);
+          }
+        }
+        
+        // Start typing and particles after loader
+        setTimeout(() => {
+          particleInterval = setInterval(createParticle, 200);
+          typeDesc();
+        }, 500);
+      </script>
+
+      <style>
+        @keyframes underlineSnake {
+          0% { left: 0; width: 0; }
+          50% { left: 0; width: 100%; }
+          100% { left: 100%; width: 0; }
+        }
+        .animated-underline {
+          position: relative;
+          display: inline-block;
+        }
+        .animated-underline::after {
+          content: '';
+          position: absolute;
+          bottom: -4px;
+          left: 0;
+          height: 2px;
+          width: 0;
+          background: linear-gradient(90deg, var(--primary), var(--accent));
+          animation: underlineSnake 3s ease-in-out infinite;
+        }
+        
+        .location-dots {
+          position: relative;
+        }
+        .snake-canvas {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+          z-index: 0;
+        }
+        .location-dots > span {
+          position: relative;
+          z-index: 1;
+        }
+        .location-dot {
+          display: inline-block;
+          transition: transform 0.3s ease;
+        }
+        .location-dot.active {
+          transform: scale(1.3);
+          color: var(--primary) !important;
+        }
+        .location-name {
+          transition: all 0.3s ease;
+        }
+        .location-name.active {
+          color: var(--primary) !important;
+          font-weight: 600;
+          transform: scale(1.05);
+          text-shadow: 0 0 10px rgba(255, 154, 60, 0.5);
+        }
+        #services-typing-mobile {
+          display: none;
+        }
+      </style>
+      <div style="margin: 2rem 0 0 0; padding: 1.5rem 2.2rem; background: linear-gradient(135deg, rgba(11, 9, 24, 0.95), rgba(20, 15, 35, 0.9)); border: 1px solid rgba(255, 154, 60, 0.15); box-shadow: 0 20px 60px rgba(255, 154, 60, 0.1), inset 0 0 60px rgba(255, 154, 60, 0.05); border-radius: 40px;">
+        <h3 style="text-align: left; margin-bottom: 0.8rem; font-size: 1.15rem; color: var(--primary); font-weight: 600; letter-spacing: 0.02em;"><span class="animated-underline">Home Celebration Command Centre</span></h3>
+        <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.7; text-align: left;">
+          Dedicated planners, décor artisans, and hospitality teams aligned to your traditions and guest comfort—delivering <strong data-stat="180" style="color: var(--primary); font-size: 1.15rem; font-weight: 700;">180</strong> events per year across <strong data-stat="14" style="color: var(--primary); font-size: 1.15rem; font-weight: 700;">14</strong> cities with an average <strong data-stat="30" style="color: var(--primary); font-size: 1.15rem; font-weight: 700;">30</strong> days of preparation and a <strong data-stat="4.9" style="color: var(--primary); font-size: 1.15rem; font-weight: 700;">4.9</strong> family rating.
+        </p>
+      </div>
+
+      <div id="hero-section-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0 0 0;">
+        <div style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); border-radius: 40px; padding: 2.2rem;">
+          <h3 style="color: var(--primary); font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; letter-spacing: 0.03em; text-transform: uppercase;">Our Event Planning Services</h3>
+          <ul style="list-style: none; padding: 0; margin: 0; color: var(--muted); font-size: 0.98rem; line-height: 2; text-transform: uppercase;">
+            <li style="padding: 0.4rem 0; padding-left: 1.5rem; position: relative;">
+              <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">✓</span>
+              Housewarming & Griha Pravesh events
+            </li>
+            <li style="padding: 0.4rem 0; padding-left: 1.5rem; position: relative;">
+              <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">✓</span>
+              Birthday & milestone celebrations
+            </li>
+            <li style="padding: 0.4rem 0; padding-left: 1.5rem; position: relative;">
+              <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">✓</span>
+              Theme décor & styling
+            </li>
+            <li style="padding: 0.4rem 0; padding-left: 1.5rem; position: relative;">
+              <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">✓</span>
+              Catering & vendor coordination
+            </li>
+            <li style="padding: 0.4rem 0; padding-left: 1.5rem; position: relative;">
+              <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">✓</span>
+              End-to-end event management
+            </li>
+          </ul>
+          <div id="services-typing-mobile"></div>
+          <script>
+            // Typing animation for mobile services
+            (function() {
+              const typingContainer = document.getElementById('services-typing-mobile');
+              if (!typingContainer || window.innerWidth > 768) return;
+              
+              const services = [
+                'Housewarming & Griha Pravesh events',
+                'Birthday & milestone celebrations',
+                'Theme décor & styling',
+                'Catering & vendor coordination',
+                'End-to-end event management'
+              ];
+              
+              let currentServiceIndex = 0;
+              let currentCharIndex = 0;
+              let isDeleting = false;
+              
+              function typeService() {
+                const currentService = services[currentServiceIndex];
+                
+                if (!isDeleting) {
+                  // Typing with arrow at start
+                  typingContainer.innerHTML = '<span style="color: var(--primary); font-weight: bold; margin-right: 0.5rem;">→</span>' + currentService.substring(0, currentCharIndex + 1);
+                  currentCharIndex++;
+                  
+                  if (currentCharIndex === currentService.length) {
+                    // Finished typing, wait then start next
+                    setTimeout(() => {
+                      currentCharIndex = 0;
+                      currentServiceIndex = (currentServiceIndex + 1) % services.length;
+                      typeService();
+                    }, 2000); // Wait 2 seconds before next service
+                    return;
+                  }
+                }
+                
+                setTimeout(typeService, 50); // 50ms per character
+              }
+              
+              // Start typing after a short delay
+              setTimeout(typeService, 500);
+            })();
+          </script>
+        </div>
+
+        <div style="background: linear-gradient(135deg, rgba(255, 154, 60, 0.06), rgba(255, 95, 162, 0.04)); border: 1px solid rgba(255, 154, 60, 0.2); box-shadow: 0 15px 40px rgba(255, 154, 60, 0.12); border-radius: 40px; padding: 2.2rem;">
+          <h3 style="color: var(--primary); font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; letter-spacing: 0.03em; text-transform: uppercase;">Loved by Families in Bengaluru</h3>
+          <div id="location-container" class="location-dots" style="display: flex; flex-wrap: wrap; gap: 0.8rem; color: var(--muted); font-size: 0.9rem; letter-spacing: 0.05em;">
+            <canvas id="snake-canvas" class="snake-canvas"></canvas>
+            <span class="location-name">Yelahanka</span>
+            <span class="location-dot" style="color: var(--primary);">•</span>
+            <span class="location-name">Hebbal</span>
+            <span class="location-dot" style="color: var(--primary);">•</span>
+            <span class="location-name">Jakkur</span>
+            <span class="location-dot" style="color: var(--primary);">•</span>
+            <span class="location-name">Devanahalli</span>
+            <span class="location-dot" style="color: var(--primary);">•</span>
+            <span class="location-name">Jayanagar</span>
+            <span class="location-dot" style="color: var(--primary);">•</span>
+            <span class="location-name">JP Nagar</span>
+            <span class="location-dot" style="color: var(--primary);">•</span>
+            <span class="location-name">Banashankari</span>
+            <span class="location-dot" style="color: var(--primary);">•</span>
+            <span class="location-name">Basavanagudi</span>
+            <span class="location-dot" style="color: var(--primary);">•</span>
+            <span class="location-name">BTM Layout</span>
+            <span class="location-dot" style="color: var(--primary);">•</span>
+            <span class="location-name">Whitefield</span>
+            <span class="location-dot" style="color: var(--primary);">•</span>
+            <span class="location-name">Indiranagar</span>
+            <span class="location-dot" style="color: var(--primary);">•</span>
+            <span class="location-name">K R Puram</span>
+            <span class="location-dot" style="color: var(--primary);">•</span>
+            <span class="location-name">Mahadevapura</span>
+            <span class="location-dot" style="color: var(--primary);">•</span>
+            <span class="location-name">Hoodi</span>
+            <span class="location-dot" style="color: var(--primary);">•</span>
+            <span class="location-name">Malleshwaram</span>
+            <span class="location-dot" style="color: var(--primary);">•</span>
+            <span class="location-name">Rajajinagar</span>
+            <span class="location-dot" style="color: var(--primary);">•</span>
+            <span class="location-name">Vijayanagar</span>
+            <span class="location-dot" style="color: var(--primary);">•</span>
+            <span class="location-name">Yeshwanthpur</span>
+          </div>
+          <script>
+            // Snake game animation for location dots - moves to nearest unvisited dot
+            (function() {
+              const container = document.getElementById('location-container');
+              const canvas = document.getElementById('snake-canvas');
+              if (!container || !canvas) return;
+              
+              const ctx = canvas.getContext('2d');
+              const dots = container.querySelectorAll('.location-dot');
+              const locationNames = container.querySelectorAll('.location-name');
+              
+              function resizeCanvas() {
+                canvas.width = container.offsetWidth;
+                canvas.height = container.offsetHeight;
+              }
+              resizeCanvas();
+              window.addEventListener('resize', resizeCanvas);
+              
+              const dotPositions = [];
+              dots.forEach((dot, index) => {
+                const rect = dot.getBoundingClientRect();
+                const containerRect = container.getBoundingClientRect();
+                dotPositions.push({
+                  x: rect.left - containerRect.left + rect.width / 2,
+                  y: rect.top - containerRect.top + rect.height / 2,
+                  element: dot,
+                  nameElement: locationNames[index],
+                  visited: false
+                });
+              });
+              
+              let currentDot = 0;
+              const snakePath = [];
+              const maxPathLength = 5;
+              let animationProgress = 0;
+              let nextDot = 0;
+              
+              function findNearestUnvisitedDot() {
+                const current = dotPositions[currentDot];
+                const candidates = [];
+                
+                // Find all unvisited dots with their distances
+                dotPositions.forEach((dot, index) => {
+                  if (!dot.visited && index !== currentDot) {
+                    const dx = dot.x - current.x;
+                    const dy = dot.y - current.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    candidates.push({ index, distance });
+                  }
+                });
+                
+                // If all visited, reset and find next
+                if (candidates.length === 0) {
+                  dotPositions.forEach(dot => dot.visited = false);
+                  return findNearestUnvisitedDot();
+                }
+                
+                // Sort by distance
+                candidates.sort((a, b) => a.distance - b.distance);
+                
+                // Pick randomly from the 3 nearest dots (or all if less than 3)
+                const topCandidates = candidates.slice(0, Math.min(3, candidates.length));
+                const randomChoice = topCandidates[Math.floor(Math.random() * topCandidates.length)];
+                
+                return randomChoice.index;
+              }
+              
+              function easeInOutQuad(t) {
+                return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+              }
+              
+              function animateSnake() {
+                // Clear canvas
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Remove active class from all dots and names
+                dots.forEach(dot => dot.classList.remove('active'));
+                locationNames.forEach(name => name.classList.remove('active'));
+                
+                if (dotPositions.length > 0) {
+                  // Smooth transition to next dot
+                  if (animationProgress >= 1) {
+                    animationProgress = 0;
+                    currentDot = nextDot;
+                    dotPositions[currentDot].visited = true;
+                    snakePath.push(dotPositions[currentDot]);
+                    if (snakePath.length > maxPathLength) {
+                      snakePath.shift();
+                    }
+                    nextDot = findNearestUnvisitedDot();
+                  }
+                  
+                  // Mark current dot and name as active
+                  dotPositions[currentDot].element.classList.add('active');
+                  if (dotPositions[currentDot].nameElement) {
+                    dotPositions[currentDot].nameElement.classList.add('active');
+                  }
+                  
+                  // Draw snake path with smooth curves
+                  if (snakePath.length > 0) {
+                    ctx.strokeStyle = '#ff9a3c';
+                    ctx.lineWidth = 3.5;
+                    ctx.lineCap = 'round';
+                    ctx.lineJoin = 'round';
+                    ctx.shadowColor = 'rgba(255, 154, 60, 0.6)';
+                    ctx.shadowBlur = 10;
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(snakePath[0].x, snakePath[0].y);
+                    
+                    // Draw existing path
+                    for (let i = 1; i < snakePath.length; i++) {
+                      const xc = (snakePath[i - 1].x + snakePath[i].x) / 2;
+                      const yc = (snakePath[i - 1].y + snakePath[i].y) / 2;
+                      ctx.quadraticCurveTo(snakePath[i - 1].x, snakePath[i - 1].y, xc, yc);
+                    }
+                    
+                    // Draw animated segment to next dot
+                    if (snakePath.length > 0 && nextDot >= 0) {
+                      const lastPos = snakePath[snakePath.length - 1];
+                      const nextPos = dotPositions[nextDot];
+                      const progress = easeInOutQuad(animationProgress);
+                      const currentX = lastPos.x + (nextPos.x - lastPos.x) * progress;
+                      const currentY = lastPos.y + (nextPos.y - lastPos.y) * progress;
+                      
+                      const xc = (lastPos.x + currentX) / 2;
+                      const yc = (lastPos.y + currentY) / 2;
+                      ctx.quadraticCurveTo(lastPos.x, lastPos.y, xc, yc);
+                      ctx.lineTo(currentX, currentY);
+                    }
+                    
+                    ctx.stroke();
+                    ctx.shadowBlur = 0;
+                  }
+                  
+                  // Increment animation progress
+                  animationProgress += 0.02;
+                }
+                
+                requestAnimationFrame(animateSnake);
+              }
+              
+              // Initialize
+              nextDot = findNearestUnvisitedDot();
+              setTimeout(animateSnake, 1000);
+            })();
+          </script>
+        </div>
+      </div>
+
+      <div style="margin: 2.5rem auto 1.5rem auto; text-align: center; max-width: 100%; display: flex; flex-direction: column; align-items: center;">
+        <p style="font-size: 0.85rem; color: var(--primary); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.8rem;">Plan Your Celebration</p>
+        <div class="hero-actions" style="justify-content: center; display: flex;">
+          <a href="#contact" class="btn btn-primary">Schedule a Discovery Call</a>
+          <a href="#portfolio" class="btn btn-outline">View Past Setups</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Home celebration <span style="position: relative; display: inline-block;">stories<span style="position: absolute; bottom: 3px; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 2px; box-shadow: 0 2px 8px rgba(255, 154, 60, 0.5);"></span></span></h2>
+          <p class="section-subtitle">Swap these visuals with your own albums to show the breadth of Mythri décor styles.</p>
+        </div>
+      </div>
+      <div class="portfolio-grid">
+        <div class="portfolio-card">
+          <figure>
+            <img src="images/image_1.png" alt="Kids jungle birthday" loading="lazy" />
+          </figure>
+          <figcaption>
+            <h3>Jungle adventure 5th birthday</h3>
+            <p>Living room transformed with layered balloon canopy, activity pods and story corner.</p>
+          </figcaption>
+        </div>
+        <div class="portfolio-card">
+          <figure>
+            <img src="images/image_4.png" alt="Housewarming entrance decor" loading="lazy" />
+          </figure>
+          <figcaption>
+            <h3>Koramangala griha pravesh</h3>
+            <p>Fresh jasmine & marigold entrance, custom rangoli, priest coordination and seated lunch.</p>
+          </figcaption>
+        </div>
+        <div class="portfolio-card">
+          <figure>
+            <img src="images/image_12.png" alt="Terrace milestone birthday" loading="lazy" />
+          </figure>
+          <figcaption>
+            <h3>Neon terrace 30th</h3>
+            <p>Projection wall, tapas-style dining, live band and surprise memory reel reveal.</p>
+          </figcaption>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Everything you need for <span style="position: relative; display: inline-block;">unforgettable<span style="position: absolute; bottom: 3px; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 2px; box-shadow: 0 2px 8px rgba(255, 154, 60, 0.5);"></span></span> birthdays & housewarmings</h2>
+          <p class="section-subtitle">Mix and match services: décor, food partners, entertainment, rituals, RSVP and day-of management handled end-to-end.</p>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="service-icon">🎈</div>
+          <h3 style="text-transform: uppercase; letter-spacing: 0.05em;">Kids birthdays</h3>
+          <p>Whimsical décor, interactive zones and crowd-friendly entertainment for little guests and their grown-ups.</p>
+          <ul class="service-list" style="text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.03em;">
+            <li>Custom backdrops & balloon art</li>
+            <li>Games host & activity stations</li>
+            <li>Return gifts & cake table styling</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="service-icon">✨</div>
+          <h3 style="text-transform: uppercase; letter-spacing: 0.05em;">Milestone birthdays</h3>
+          <p>Set the mood for intimate dinners to terrace dance nights with immersive lighting and curated menus.</p>
+          <ul class="service-list" style="text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.03em;">
+            <li>Theme styling & lounge layouts</li>
+            <li>Chef collaborations & mixology</li>
+            <li>Live music, DJs & photo ops</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="service-icon">🏠</div>
+          <h3 style="text-transform: uppercase; letter-spacing: 0.05em;">Housewarmings</h3>
+          <p>Griha pravesh rituals, pooja coordination and welcoming hospitality for your first gathering at home.</p>
+          <ul class="service-list" style="text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.03em;">
+            <li>Entrance florals & rangoli</li>
+            <li>Pooja essentials & priest liaison</li>
+            <li>Seating, servers & buffet flow</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="container experience-grid">
+      <div class="experience-card">
+        <div class="pill">Our celebration blueprint</div>
+        <h2 class="section-title" style="margin-top: 1rem;">From first call to last guest goodbye</h2>
+        <p style="color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem;">One producer walks with you throughout, with designers, chefs, stylists and floor managers aligned behind the scenes.</p>
+        <ul class="timeline">
+          <li>
+            <strong>Discovery & idea board</strong>
+            <span>Home walkthrough, rituals list, theme inspiration and transparent budgeting.</span>
+          </li>
+          <li>
+            <strong>Design & vendor curation</strong>
+            <span>Décor mockups, partner shortlist, tasting notes and logistics map.</span>
+          </li>
+          <li>
+            <strong>Show flow & coordination</strong>
+            <span>Minute-by-minute schedule, guest flow, tech cue sheets and vendor briefings.</span>
+          </li>
+          <li>
+            <strong>Afterglow wrap</strong>
+            <span>Clean-up, vendor closures, media gallery delivery and keepsake bouquet drop.</span>
+          </li>
+        </ul>
+      </div>
+      <div class="experience-card" style="background: linear-gradient(140deg, rgba(255,154,60,0.08), rgba(255,95,162,0.18)); display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <h3 style="font-size: 1.4rem; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;"><span style="position: relative; display: inline-block;">Celebration<span style="position: absolute; bottom: 3px; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 2px; box-shadow: 0 2px 8px rgba(255, 154, 60, 0.5);"></span></span> ops snapshot</h3>
+          <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">On-site concierge team assigned to décor, hospitality, kids engagement and ritual management.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; margin: 1.5rem 0;">
+          <div style="text-align: center; padding: 1.2rem; background: rgba(0, 0, 0, 0.4); border-radius: 12px; border: 1px solid rgba(255, 154, 60, 0.3);">
+            <strong style="display: block; font-size: 2.5rem; color: var(--primary); margin-bottom: 0.3rem;">06</strong>
+            <span style="color: var(--muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Celebration leads</span>
+          </div>
+          <div style="text-align: center; padding: 1.2rem; background: rgba(0, 0, 0, 0.4); border-radius: 12px; border: 1px solid rgba(255, 154, 60, 0.3);">
+            <strong style="display: block; font-size: 2.5rem; color: var(--primary); margin-bottom: 0.3rem;">20</strong>
+            <span style="color: var(--muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Décor stylists</span>
+          </div>
+          <div style="text-align: center; padding: 1.2rem; background: rgba(0, 0, 0, 0.4); border-radius: 12px; border: 1px solid rgba(255, 154, 60, 0.3);">
+            <strong style="display: block; font-size: 2.5rem; color: var(--primary); margin-bottom: 0.3rem;">45</strong>
+            <span style="color: var(--muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Catering partners</span>
+          </div>
+          <div style="text-align: center; padding: 1.2rem; background: rgba(0, 0, 0, 0.4); border-radius: 12px; border: 1px solid rgba(255, 154, 60, 0.3);">
+            <strong style="display: block; font-size: 2.5rem; color: var(--primary); margin-bottom: 0.3rem;">120+</strong>
+            <span style="color: var(--muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Kids entertainers</span>
+          </div>
+        </div>
+        <div style="margin-top: auto;">
+          <a href="#contact" class="btn btn-primary" style="width: 100%; padding: 0.9rem;">Book a walkthrough</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Collage of <span style="position: relative; display: inline-block;">joy<span style="position: absolute; bottom: 3px; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 2px; box-shadow: 0 2px 8px rgba(255, 154, 60, 0.5);"></span></span></h2>
+          <p class="section-subtitle">A dynamic photo wall pulling highlights from our image library each time you load the page.</p>
+        </div>
+      </div>
+      <div class="gallery-grid" id="collage-grid" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="metrics">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Why <span style="position: relative; display: inline-block;">families<span style="position: absolute; bottom: 3px; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 2px; box-shadow: 0 2px 8px rgba(255, 154, 60, 0.5);"></span></span> choose Mythri Events</h2>
+          <p class="section-subtitle">Consistency, transparent planning and heartfelt execution for every house celebration.</p>
+        </div>
+      </div>
+      <div class="metrics-grid">
+        <div class="metric">
+          <strong data-stat="95">0%</strong>
+          <span>Guests stay for cake & rituals</span>
+        </div>
+        <div class="metric">
+          <strong data-stat="72">0</strong>
+          <span>average invitees served</span>
+        </div>
+        <div class="metric">
+          <strong data-stat="38">0</strong>
+          <span>same-week referrals</span>
+        </div>
+        <div class="metric">
+          <strong data-stat="3.5">0</strong>
+          <span>hrs to wrap-up after event</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-header section-header--line-top">
+        <div>
+          <h2 class="section-title">Families sharing the <span style="position: relative; display: inline-block;">love<span style="position: absolute; bottom: 3px; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 2px; box-shadow: 0 2px 8px rgba(255, 154, 60, 0.5);"></span></span></h2>
+          <p class="section-subtitle">Each celebration ends with hugs, photos and these kind words.</p>
+        </div>
+      </div>
+      <div class="testimonials-scroll-container" style="overflow: hidden; position: relative;">
+        <div class="testimonials-track" style="display: flex; gap: 1.5rem; animation: scrollTestimonials 40s linear infinite;">
+          <article class="testimonial" style="flex: 0 0 calc(33.333% - 1rem); flex-shrink: 0;">
+            <div class="rating">★★★★★</div>
+            <p>"Our daughter's unicorn party felt like a storybook. The Mythri games host kept 20 kids engaged while we actually enjoyed the guests."</p>
+            <footer>
+              <strong>Priya & Aviral</strong>
+              <span>5th birthday, Sarjapur Road</span>
+            </footer>
+          </article>
+          <article class="testimonial" style="flex: 0 0 calc(33.333% - 1rem); flex-shrink: 0;">
+            <div class="rating">★★★★★</div>
+            <p>"They ran our griha pravesh like clockwork – priest coordination, prasad, buffet, valet – everything just appeared at the right time."</p>
+            <footer>
+              <strong>Harini & Vignesh</strong>
+              <span>Housewarming, Indiranagar</span>
+            </footer>
+          </article>
+          <article class="testimonial" style="flex: 0 0 calc(33.333% - 1rem); flex-shrink: 0;">
+            <div class="rating">★★★★★</div>
+            <p>"We briefed them on 'speakeasy meets Carnatic' for a 40th. They delivered an immersive terrace and a tears-worthy AV in 3 weeks."</p>
+            <footer>
+              <strong>Ritu Singh</strong>
+              <span>Milestone birthday, Residency Road</span>
+            </footer>
+          </article>
+          <article class="testimonial" style="flex: 0 0 calc(33.333% - 1rem); flex-shrink: 0;">
+            <div class="rating">★★★★★</div>
+            <p>"The balloon arch and themed backdrops were Instagram-worthy. Our son still talks about the magic show they arranged!"</p>
+            <footer>
+              <strong>Anjali & Karthik</strong>
+              <span>7th birthday, Whitefield</span>
+            </footer>
+          </article>
+          <article class="testimonial" style="flex: 0 0 calc(33.333% - 1rem); flex-shrink: 0;">
+            <div class="rating">★★★★★</div>
+            <p>"From rangoli to return gifts, every detail was perfect. Our guests are still raving about the food and décor."</p>
+            <footer>
+              <strong>Meera Reddy</strong>
+              <span>Housewarming, Koramangala</span>
+            </footer>
+          </article>
+          <article class="testimonial" style="flex: 0 0 calc(33.333% - 1rem); flex-shrink: 0;">
+            <div class="rating">★★★★★</div>
+            <p>"They transformed our terrace into a magical venue. The lighting and music setup was beyond our expectations!"</p>
+            <footer>
+              <strong>Rohan & Divya</strong>
+              <span>Anniversary, HSR Layout</span>
+            </footer>
+          </article>
+          <!-- Duplicate for seamless loop -->
+          <article class="testimonial" style="flex: 0 0 calc(33.333% - 1rem); flex-shrink: 0;">
+            <div class="rating">★★★★★</div>
+            <p>"Our daughter's unicorn party felt like a storybook. The Mythri games host kept 20 kids engaged while we actually enjoyed the guests."</p>
+            <footer>
+              <strong>Priya & Aviral</strong>
+              <span>5th birthday, Sarjapur Road</span>
+            </footer>
+          </article>
+          <article class="testimonial" style="flex: 0 0 calc(33.333% - 1rem); flex-shrink: 0;">
+            <div class="rating">★★★★★</div>
+            <p>"They ran our griha pravesh like clockwork – priest coordination, prasad, buffet, valet – everything just appeared at the right time."</p>
+            <footer>
+              <strong>Harini & Vignesh</strong>
+              <span>Housewarming, Indiranagar</span>
+            </footer>
+          </article>
+          <article class="testimonial" style="flex: 0 0 calc(33.333% - 1rem); flex-shrink: 0;">
+            <div class="rating">★★★★★</div>
+            <p>"We briefed them on 'speakeasy meets Carnatic' for a 40th. They delivered an immersive terrace and a tears-worthy AV in 3 weeks."</p>
+            <footer>
+              <strong>Ritu Singh</strong>
+              <span>Milestone birthday, Residency Road</span>
+            </footer>
+          </article>
+        </div>
+      </div>
+      <style>
+        @keyframes scrollTestimonials {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .testimonials-track:hover {
+          animation-play-state: paused;
+        }
+        .testimonials-scroll-container {
+          position: relative;
+          -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 33.333%, black 66.666%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0%, black 33.333%, black 66.666%, transparent 100%);
+        }
+        .testimonials-scroll-container::before {
+          content: '';
+          position: absolute;
+          left: 50%;
+          top: 0;
+          bottom: 0;
+          width: calc(33.333% - 1rem);
+          transform: translateX(-50%);
+          background: linear-gradient(135deg, rgba(255, 154, 60, 0.15), rgba(255, 95, 162, 0.1));
+          border: 2px solid rgba(255, 154, 60, 0.4);
+          border-radius: 20px;
+          pointer-events: none;
+          z-index: 1;
+          box-shadow: 0 0 30px rgba(255, 154, 60, 0.3);
+        }
+      </style>
+    </div>
+  </section>
+
+  <section id="packages" style="border-top: none; padding-top: 2rem;">
+    <style>
+      #packages::before {
+        display: none !important;
+      }
+      #testimonials::after {
+        display: none !important;
+      }
+    </style>
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Signature celebration packages</h2>
+          <p class="section-subtitle">Flexible scopes built around your space, guest count and rituals.</p>
+        </div>
+      </div>
+      <div class="packages">
+        <div class="package-card">
+          <h3>Birthday spark</h3>
+          <strong>₹1.6L+</strong>
+          <small>Kids birthdays & intimate milestones</small>
+          <ul class="package-list">
+            <li>Concept board & décor production</li>
+            <li>Activity host + sound</li>
+            <li>Dessert & cake styling</li>
+            <li>Photography add-on</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline package-btn" style="margin-top: auto;">Check calendar</a>
+        </div>
+        <div class="package-card">
+          <h3>Home blessing</h3>
+          <strong>₹2.4L+</strong>
+          <small>Housewarmings & griha pravesh</small>
+          <ul class="package-list">
+            <li>Ritual setup & priest support</li>
+            <li>Entrance & living décor</li>
+            <li>Buffet planning + service</li>
+            <li>Guest flow & valet team</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline package-btn" style="margin-top: auto;">Hold my date</a>
+        </div>
+        <div class="package-card">
+          <h3>Milestone luxe</h3>
+          <strong>₹4.5L+</strong>
+          <small>30th / 40th / 50th soirées</small>
+          <ul class="package-list">
+            <li>Theme styling & lighting</li>
+            <li>Cocktail & chef partners</li>
+            <li>Entertainment & AV crew</li>
+            <li>On-site producer & run sheet</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline package-btn" style="margin-top: auto;">Start planning</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Tell us about your celebration</h2>
+          <p class="section-subtitle">Share the basics and we’ll send concept ideas, pricing and availability within one business day.</p>
+        </div>
+      </div>
+      <div class="contact-grid">
+        <form onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div>
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" required pattern="^[A-Za-z\s]+$" title="Name cannot contain numbers" />
+              <div id="name-error" style="color: #ff5fa2; font-size: 0.85rem; margin-top: 0.2rem; display: none;"></div>
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div>
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" placeholder="+91 9999999999" required pattern="^\+91\s?\d{10}$" title="Enter a valid Indian phone number with country code, e.g. +91 9876543210" />
+              <div id="phone-error" style="color: #ff5fa2; font-size: 0.85rem; margin-top: 0.2rem; display: none;"></div>
+            </div>
+            <div>
+              <label for="event">Event Type</label>
+              <select id="event" name="event" required>
+                <option value="">Select</option>
+                <option value="birthday">Birthday</option>
+                <option value="housewarming">Housewarming</option>
+                <option value="milestone">Milestone</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label for="message">Tell us more</label>
+            <textarea id="message" name="message" placeholder="Date, location, guest count, rituals, etc." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Send enquiry <span>📧</span></button>
+        </form>
+        <aside class="contact-aside">
+          <div>
+            <h3>Visit the Mythri Events</h3>
+            <p style="color: var(--muted);">Akash Nagar, PWD Road, Bengaluru 560016 <span>📍</span></p>
+          </div>
+          <div class="contact-card" style="animation: popInOut 3s ease-in-out infinite; animation-delay: 0s;">
+            <strong>Avaliable Hours:</strong>
+            <span><br>
+              Mon – Sat 9:00 AM – 9:00 PM IST  ⏰
+            </br></span>
+          </div>  
+          <div class="contact-card" style="animation: popInOut 3s ease-in-out infinite; animation-delay: 0.6s;">
+            <strong>Call:</strong>
+            <br><a href="tel:+919876543210">+91 90365 44997  📞</a></br>
+          </div>
+          <div class="contact-card" style="animation: popInOut 3s ease-in-out infinite; animation-delay: 1.2s;">
+            <strong>Email:</strong>
+            <br><a href="mailto:mythrievents@gmail.com">mythrievents@gmail.com <span>📧</span></a>
+          </div>
+          <div class="contact-card" style="animation: popInOut 3s ease-in-out infinite; animation-delay: 1.8s;">
+            <strong>Instagram:</strong>
+            <br><a href="#">#mythrievents <span>📷</span></a>
+          </div>
+        </aside>
+        <style>
+          @keyframes popInOut {
+            0%, 100% {
+              transform: scale(1);
+              opacity: 1;
+            }
+            50% {
+              transform: scale(1.03);
+              opacity: 1;
+              box-shadow: 0 4px 12px rgba(255, 154, 60, 0.2);
+            }
+          }
+        </style>
+      </div>
+
+      <div class="faq">
+        <div class="faq-item">
+          <h4>How early should we book? <span>+</span></h4>
+          <p>Prime weekends fill 6 weeks ahead. Housewarmings tied to auspicious dates should be reserved as soon as your handover is confirmed.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Do you manage pooja rituals? <span>+</span></h4>
+          <p>Yes, we coordinate priests, essentials, seating, prasad and schedule so your family can focus on the blessings.</p>
+        </div>
+        <div class="faq-item">
+          <h4>What budgets do you work with? <span>+</span></h4>
+          <p>Kids birthdays begin at ₹1.5L, housewarmings at ₹2.2L and milestone soirées from ₹4L. Custom quotes follow discovery.</p>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: 2.5rem;">
+        <a class="btn btn-primary" href="#contact" style="display: inline-block;">Plan with Mythri Events</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <div>© <span id="year"></span> Mythri Events. Designed with love in Bengaluru.</div>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#gallery">Collage</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile nav toggle - ensure DOM is ready
+  document.addEventListener('DOMContentLoaded', function() {
+    const navToggle = document.getElementById('mobile-nav-toggle');
+    const navLinks = document.getElementById('primary-nav');
+    
+    if (!navToggle || !navLinks) {
+      console.error('Nav toggle elements not found');
+      return;
+    }
+    
+    navToggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+      navToggle.textContent = isOpen ? '✕' : '☰';
+    });
+    
+    // Close nav when clicking links
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          navLinks.classList.remove('open');
+          navToggle.textContent = '☰';
+        }
+      });
+    });
+  });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const nameValue = form.name.value.trim();
+    const namePattern = /^[A-Za-z\s]+$/;
+    const nameError = document.getElementById('name-error');
+    if (!namePattern.test(nameValue)) {
+      nameError.textContent = 'Name cannot contain numbers or special characters.';
+      nameError.style.display = 'block';
+      form.name.focus();
+      return false;
+    } else {
+      nameError.textContent = '';
+      nameError.style.display = 'none';
+    }
+    const phoneValue = form.phone.value.trim();
+    const phonePattern = /^\+91\s?\d{10}$/;
+    const phoneError = document.getElementById('phone-error');
+    if (!phonePattern.test(phoneValue)) {
+      phoneError.textContent = 'Please enter a valid Indian phone number with country code, e.g. +91 9876543210';
+      phoneError.style.display = 'block';
+      form.phone.focus();
+      return false;
+    } else {
+      phoneError.textContent = '';
+      phoneError.style.display = 'none';
+    }
+    const payload = {
+      name: nameValue,
+      email: form.email.value.trim(),
+      phone: phoneValue,
+      event: form.event.value,
+      message: form.message.value.trim()
+    };
+    const text = [
+      'Mythri Events enquiry',
+      `Name: ${payload.name}`,
+      `Email: ${payload.email}`,
+      `Phone: ${payload.phone}`,
+      `Event Type: ${payload.event || 'Not specified'}`,
+      `Details: ${payload.message}`
+    ].join('\n');
+    const whatsappUrl = `https://wa.me/9036544997?text=${encodeURIComponent(text)}`;
+    window.open(whatsappUrl, '_blank');
+    form.reset();
+    phoneError.textContent = '';
+    phoneError.style.display = 'none';
+    nameError.textContent = '';
+    nameError.style.display = 'none';
+    form.reset();
+  }
+
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('page-loader');
+    if (loader) {
+      setTimeout(() => loader.classList.add('hidden'), 100);
+    }
+  });
+
+  // Stat counter animation
+  const statElements = document.querySelectorAll('[data-stat]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const targetValue = parseFloat(el.dataset.stat);
+        let current = 0;
+        const increment = targetValue / 60;
+        const update = () => {
+          current += increment;
+          if (current >= targetValue) {
+            el.textContent = targetValue % 1 === 0 ? targetValue : targetValue.toFixed(1);
+            return;
+          }
+          el.textContent = current.toFixed(targetValue % 1 === 0 ? 0 : 1);
+          requestAnimationFrame(update);
+        };
+        requestAnimationFrame(update);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  statElements.forEach((el) => observer.observe(el));
+
+  // FAQ accordions
+  document.querySelectorAll('.faq-item').forEach((item) => {
+    item.addEventListener('click', () => {
+      item.classList.toggle('active');
+      const symbol = item.querySelector('h4 span');
+      symbol.textContent = item.classList.contains('active') ? '−' : '+';
+    });
+  });
+
+  // Celebration collage using local images
+  const collageImages = [
+    'images/image_1.png',
+    'images/image_2.png',
+    'images/image_3.png',
+    'images/image_4.png',
+    'images/image_5.png',
+    'images/image_6.png',
+    'images/image_8.png',
+    'images/image_9.png',
+    'images/image_10.png',
+    'images/image_11.png',
+    'images/image_12.png',
+  ];
+
+  const collageContainer = document.getElementById('collage-grid');
+  if (collageContainer) {
+    const variants = ['wide', 'tall', ''];
+    const shuffled = collageImages
+      .map((src) => ({ src, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort);
+
+    const isMobile = window.innerWidth <= 768;
+
+    if (isMobile) {
+      // Mobile: Show only 2 slots, cycle through all images
+      const slot1 = document.createElement('figure');
+      slot1.className = 'collage-item';
+      const img1 = document.createElement('img');
+      img1.alt = 'Mythri celebration highlight';
+      slot1.appendChild(img1);
+      collageContainer.appendChild(slot1);
+
+      const slot2 = document.createElement('figure');
+      slot2.className = 'collage-item';
+      const img2 = document.createElement('img');
+      img2.alt = 'Mythri celebration highlight';
+      slot2.appendChild(img2);
+      collageContainer.appendChild(slot2);
+
+      let currentIndex = 0;
+      
+      function updateImages() {
+        const nextIndex = (currentIndex + 1) % shuffled.length;
+        
+        // Fade out current image in slot 1
+        slot1.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        slot1.style.opacity = '0';
+        slot1.style.transform = 'scale(0.9)';
+        
+        setTimeout(() => {
+          img1.src = shuffled[currentIndex].src;
+          slot1.style.opacity = '1';
+          slot1.style.transform = 'scale(1)';
+        }, 500);
+        
+        // After 1 second, update slot 2
+        setTimeout(() => {
+          slot2.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          slot2.style.opacity = '0';
+          slot2.style.transform = 'scale(0.9)';
+          
+          setTimeout(() => {
+            img2.src = shuffled[nextIndex].src;
+            slot2.style.opacity = '1';
+            slot2.style.transform = 'scale(1)';
+          }, 500);
+        }, 1000);
+        
+        currentIndex = (currentIndex + 2) % shuffled.length;
+      }
+      
+      // Initial display
+      img1.src = shuffled[0].src;
+      img2.src = shuffled[1].src;
+      currentIndex = 2;
+      
+      // Update every 2 seconds (1 sec per image)
+      setInterval(updateImages, 2000);
+      
+    } else {
+      // Desktop: Show all images with variants
+      shuffled.forEach(({ src }, index) => {
+        const figure = document.createElement('figure');
+        const variant = index === 10 ? '' : variants[index % 3];
+        figure.className = `collage-item ${variant}`.trim();
+        
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = `Mythri celebration highlight ${index + 1}`;
+        img.loading = 'lazy';
+        figure.appendChild(img);
+        collageContainer.appendChild(figure);
+      });
+    }
+  }
+
+  // Animate section divider lines on scroll
+  const pageSections = document.querySelectorAll('main > section');
+  if (pageSections.length) {
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('section-divider-active');
+        } else {
+          entry.target.classList.remove('section-divider-active');
+        }
+      });
+    }, {
+      threshold: 0.4,
+    });
+
+    pageSections.forEach((section) => sectionObserver.observe(section));
+  }
+
+  // Sequential package card highlighting animation
+  const packageCards = document.querySelectorAll('.package-card');
+  if (packageCards.length) {
+    let currentIndex = 0;
+    let animationInterval;
+    let isHovered = false;
+    
+    function highlightNextCard() {
+      if (isHovered) return; // Don't change highlight when hovering
+      
+      // Remove highlight from all cards and reset buttons
+      packageCards.forEach(card => {
+        card.classList.remove('auto-highlight');
+        const btn = card.querySelector('.package-btn');
+        if (btn) {
+          btn.classList.remove('btn-primary');
+          btn.classList.add('btn-outline');
+        }
+      });
+      
+      // Add highlight to current card and change button
+      packageCards[currentIndex].classList.add('auto-highlight');
+      const currentBtn = packageCards[currentIndex].querySelector('.package-btn');
+      if (currentBtn) {
+        currentBtn.classList.remove('btn-outline');
+        currentBtn.classList.add('btn-primary');
+      }
+      
+      // Move to next card
+      currentIndex = (currentIndex + 1) % packageCards.length;
+    }
+    
+    // Add hover listeners to pause animation and highlight hovered card
+    packageCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        isHovered = true;
+        // Remove auto-highlight from all cards and reset all buttons
+        packageCards.forEach(c => {
+          c.classList.remove('auto-highlight');
+          const btn = c.querySelector('.package-btn');
+          if (btn) {
+            btn.classList.remove('btn-primary');
+            btn.classList.add('btn-outline');
+          }
+        });
+        // Highlight the hovered card and make its button glow
+        card.classList.add('auto-highlight');
+        const hoveredBtn = card.querySelector('.package-btn');
+        if (hoveredBtn) {
+          hoveredBtn.classList.remove('btn-outline');
+          hoveredBtn.classList.add('btn-primary');
+        }
+      });
+      card.addEventListener('mouseleave', () => {
+        isHovered = false;
+        // Remove highlight from this card when mouse leaves
+        card.classList.remove('auto-highlight');
+        const btn = card.querySelector('.package-btn');
+        if (btn) {
+          btn.classList.remove('btn-primary');
+          btn.classList.add('btn-outline');
+        }
+      });
+    });
+    
+    // Start the animation after a short delay
+    setTimeout(() => {
+      highlightNextCard(); // Highlight first card immediately
+      animationInterval = setInterval(highlightNextCard, 2000); // Then cycle every 2 seconds
+    }, 1000);
+  }
+</script>
+</body>
+</html>

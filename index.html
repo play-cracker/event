@@ -975,9 +975,10 @@
         // Typing effect for hero description with particles
         const heroDesc = document.getElementById('hero-description');
         const particlesContainer = document.getElementById('typing-particles');
-        const descText = "From Gruha Pravesh to milestone birthdays, Mythri Events creates elegant, stress-free home celebrations.\nWe handle every detail so you can simply celebrate.\n\nTeam,\nMythri Events";
+        const descText = "From Gruha Pravesh to milestone birthdays, Mythri Events creates elegant, stress-free home celebrations.\n\nWe handle every detail so you can simply celebrate.\n\nTeam,\nMythri Events";
         const particleImages = ['images/transparent_1.png', 'images/transparent_2.png','images/transparent_3.png', 'images/transparent_4.png', 'images/transparent_5.png', 'images/transparent_6.png'];
-        
+        heroDesc.style.fontFamily = '"Zapfino", sans-serif';
+        heroDesc.style.fontSize = "1.4rem";
         heroDesc.textContent = "";
         let j = 0;
         let particleInterval;
@@ -1074,15 +1075,6 @@
         
         .location-dots {
           position: relative;
-        }
-        .snake-canvas {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          pointer-events: none;
-          z-index: 0;
         }
         .location-dots > span {
           position: relative;
@@ -1191,7 +1183,6 @@
         <div style="background: linear-gradient(135deg, rgba(255, 154, 60, 0.06), rgba(255, 95, 162, 0.04)); border: 1px solid rgba(255, 154, 60, 0.2); box-shadow: 0 15px 40px rgba(255, 154, 60, 0.12); border-radius: 40px; padding: 2.2rem;">
           <h3 style="color: var(--primary); font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; letter-spacing: 0.03em; text-transform: uppercase;">Loved by Families in Bengaluru</h3>
           <div id="location-container" class="location-dots" style="display: flex; flex-wrap: wrap; gap: 0.8rem; color: var(--muted); font-size: 0.9rem; letter-spacing: 0.05em;">
-            <canvas id="snake-canvas" class="snake-canvas"></canvas>
             <span class="location-name">Yelahanka</span>
             <span class="location-dot" style="color: var(--primary);">•</span>
             <span class="location-name">Hebbal</span>
@@ -1229,22 +1220,12 @@
             <span class="location-name">Yeshwanthpur</span>
           </div>
           <script>
-            // Snake game animation for location dots - moves to nearest unvisited dot
             (function() {
               const container = document.getElementById('location-container');
-              const canvas = document.getElementById('snake-canvas');
-              if (!container || !canvas) return;
-              
-              const ctx = canvas.getContext('2d');
+              if (!container) return;
+
               const dots = container.querySelectorAll('.location-dot');
               const locationNames = container.querySelectorAll('.location-name');
-              
-              function resizeCanvas() {
-                canvas.width = container.offsetWidth;
-                canvas.height = container.offsetHeight;
-              }
-              resizeCanvas();
-              window.addEventListener('resize', resizeCanvas);
               
               const dotPositions = [];
               dots.forEach((dot, index) => {
@@ -1260,9 +1241,6 @@
               });
               
               let currentDot = 0;
-              const snakePath = [];
-              const maxPathLength = 5;
-              let animationProgress = 0;
               let nextDot = 0;
               
               function findNearestUnvisitedDot() {
@@ -1294,85 +1272,28 @@
                 
                 return randomChoice.index;
               }
-              
-              function easeInOutQuad(t) {
-                return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-              }
-              
-              function animateSnake() {
-                // Clear canvas
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                // Remove active class from all dots and names
+
+              function animateHighlight() {
                 dots.forEach(dot => dot.classList.remove('active'));
                 locationNames.forEach(name => name.classList.remove('active'));
-                
-                if (dotPositions.length > 0) {
-                  // Smooth transition to next dot
-                  if (animationProgress >= 1) {
-                    animationProgress = 0;
-                    currentDot = nextDot;
-                    dotPositions[currentDot].visited = true;
-                    snakePath.push(dotPositions[currentDot]);
-                    if (snakePath.length > maxPathLength) {
-                      snakePath.shift();
-                    }
-                    nextDot = findNearestUnvisitedDot();
-                  }
-                  
-                  // Mark current dot and name as active
-                  dotPositions[currentDot].element.classList.add('active');
-                  if (dotPositions[currentDot].nameElement) {
-                    dotPositions[currentDot].nameElement.classList.add('active');
-                  }
-                  
-                  // Draw snake path with smooth curves
-                  if (snakePath.length > 0) {
-                    ctx.strokeStyle = '#ff9a3c';
-                    ctx.lineWidth = 3.5;
-                    ctx.lineCap = 'round';
-                    ctx.lineJoin = 'round';
-                    ctx.shadowColor = 'rgba(255, 154, 60, 0.6)';
-                    ctx.shadowBlur = 10;
-                    
-                    ctx.beginPath();
-                    ctx.moveTo(snakePath[0].x, snakePath[0].y);
-                    
-                    // Draw existing path
-                    for (let i = 1; i < snakePath.length; i++) {
-                      const xc = (snakePath[i - 1].x + snakePath[i].x) / 2;
-                      const yc = (snakePath[i - 1].y + snakePath[i].y) / 2;
-                      ctx.quadraticCurveTo(snakePath[i - 1].x, snakePath[i - 1].y, xc, yc);
-                    }
-                    
-                    // Draw animated segment to next dot
-                    if (snakePath.length > 0 && nextDot >= 0) {
-                      const lastPos = snakePath[snakePath.length - 1];
-                      const nextPos = dotPositions[nextDot];
-                      const progress = easeInOutQuad(animationProgress);
-                      const currentX = lastPos.x + (nextPos.x - lastPos.x) * progress;
-                      const currentY = lastPos.y + (nextPos.y - lastPos.y) * progress;
-                      
-                      const xc = (lastPos.x + currentX) / 2;
-                      const yc = (lastPos.y + currentY) / 2;
-                      ctx.quadraticCurveTo(lastPos.x, lastPos.y, xc, yc);
-                      ctx.lineTo(currentX, currentY);
-                    }
-                    
-                    ctx.stroke();
-                    ctx.shadowBlur = 0;
-                  }
-                  
-                  // Increment animation progress
-                  animationProgress += 0.02;
+
+                if (dotPositions.length === 0) return;
+
+                currentDot = nextDot;
+                dotPositions[currentDot].visited = true;
+
+                dotPositions[currentDot].element.classList.add('active');
+                if (dotPositions[currentDot].nameElement) {
+                  dotPositions[currentDot].nameElement.classList.add('active');
                 }
-                
-                requestAnimationFrame(animateSnake);
+
+                nextDot = findNearestUnvisitedDot();
+                setTimeout(animateHighlight, 900);
               }
               
               // Initialize
               nextDot = findNearestUnvisitedDot();
-              setTimeout(animateSnake, 1000);
+              setTimeout(animateHighlight, 800);
             })();
           </script>
         </div>

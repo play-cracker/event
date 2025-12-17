@@ -519,6 +519,58 @@
       header .nav .btn.btn-primary { display: none; }
     }
 
+    @media (hover: none), (pointer: coarse) {
+      #mobile-nav-toggle {
+        display: inline-flex;
+        padding: 0.35rem;
+        transition: transform 0.2s ease;
+        margin-left: auto;
+      }
+      #mobile-nav-toggle:active { transform: scale(0.9); }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: rgba(10, 9, 23, 0.98);
+        backdrop-filter: blur(20px);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        margin: 0 !important;
+        padding: 1.2rem 1rem;
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.65);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        gap: 0.5rem;
+        z-index: 100;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .nav-links.open {
+        display: flex !important;
+        visibility: visible;
+        opacity: 1;
+      }
+      .nav-links a {
+        padding: 0.8rem 1rem !important;
+        border-radius: 8px !important;
+        transition: background 0.2s ease, color 0.2s ease !important;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .nav-links a:hover,
+      .nav-links a:active,
+      .nav-links a:focus {
+        background: rgba(255, 154, 60, 0.15) !important;
+        color: var(--primary) !important;
+        transform: none !important;
+        outline: none;
+      }
+      .nav-links a:active {
+        background: rgba(255, 154, 60, 0.25) !important;
+      }
+      .nav-links a::after { display: none; }
+      header .nav .btn.btn-primary { display: none; }
+    }
+
     @media (max-width: 768px) {
       #mobile-nav-toggle {
         display: inline-flex;
@@ -856,6 +908,15 @@
       }
       .logo-text {
         font-size: 1.6rem !important;
+      }
+      .desktop-cta { display: none; }
+    }
+
+    @media (hover: none), (pointer: coarse) {
+      .container.nav {
+        flex-wrap: nowrap;
+        gap: 0.5rem;
+        padding: 0.4rem 1rem;
       }
       .desktop-cta { display: none; }
     }
@@ -1804,7 +1865,7 @@
   document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.getElementById('mobile-nav-toggle');
     const navLinks = document.getElementById('primary-nav');
-    const mobileNavBreakpoint = 1024;
+    const isHamburgerMode = () => window.matchMedia('(max-width: 1024px), (hover: none), (pointer: coarse)').matches;
     
     if (!navToggle || !navLinks) {
       console.error('Nav toggle elements not found');
@@ -1827,14 +1888,14 @@
     // Close nav when clicking links
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        if (window.innerWidth <= mobileNavBreakpoint) {
+        if (isHamburgerMode()) {
           closeNav();
         }
       });
     });
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth > mobileNavBreakpoint) {
+      if (!isHamburgerMode()) {
         closeNav();
       }
     });

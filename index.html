@@ -467,6 +467,58 @@
       .metrics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
+    @media (max-width: 1024px) {
+      #mobile-nav-toggle {
+        display: inline-flex;
+        padding: 0.35rem;
+        transition: transform 0.2s ease;
+        margin-left: auto;
+      }
+      #mobile-nav-toggle:active { transform: scale(0.9); }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: rgba(10, 9, 23, 0.98);
+        backdrop-filter: blur(20px);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        margin: 0 !important;
+        padding: 1.2rem 1rem;
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.65);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        gap: 0.5rem;
+        z-index: 100;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .nav-links.open {
+        display: flex !important;
+        visibility: visible;
+        opacity: 1;
+      }
+      .nav-links a {
+        padding: 0.8rem 1rem !important;
+        border-radius: 8px !important;
+        transition: background 0.2s ease, color 0.2s ease !important;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .nav-links a:hover,
+      .nav-links a:active,
+      .nav-links a:focus {
+        background: rgba(255, 154, 60, 0.15) !important;
+        color: var(--primary) !important;
+        transform: none !important;
+        outline: none;
+      }
+      .nav-links a:active {
+        background: rgba(255, 154, 60, 0.25) !important;
+      }
+      .nav-links a::after { display: none; }
+      header .nav .btn.btn-primary { display: none; }
+    }
+
     @media (max-width: 768px) {
       #mobile-nav-toggle {
         display: inline-flex;
@@ -796,7 +848,7 @@
     <button id="mobile-nav-toggle" aria-label="Open navigation">☰</button>
   </div>
   <style>
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
       .container.nav {
         flex-wrap: nowrap;
         gap: 0.5rem;
@@ -823,7 +875,7 @@
   <section class="hero" id="top">
     <div class="container hero-grid">
       <div class="pill">Event Planner</div>
-      <h1 class="hero-title">Housewarmings & Birthdays Designed for <span>Bengaluru Homes</span></h1>
+      <h1 class="hero-title">Housewarmings & Birthdays Designed for <span>Bengaluru</span></h1>
       
       <div style="position: relative; min-height: 450px; height: auto;">
         <div id="typing-particles" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 0; overflow: hidden;"></div>
@@ -1690,11 +1742,11 @@
           </div>
           <div class="contact-card" style="animation: popInOut 3s ease-in-out infinite; animation-delay: 1.2s;">
             <strong>Email:</strong>
-            <br><a href="mailto:mythrievents@gmail.com">mythrievents@gmail.com <span>📧</span></a>
+            <br><a href="mailto:mythrievents.in@gmail.com">mythrievents.in@gmail.com <span>📧</span></a>
           </div>
           <div class="contact-card" style="animation: popInOut 3s ease-in-out infinite; animation-delay: 1.8s;">
             <strong>Instagram:</strong>
-            <br><a href="#">#mythrievents <span>📷</span></a>
+            <br><a href="https://www.instagram.com/mythri_events5/" target="_blank">@mythri_events5 <span>📷</span></a>
           </div>
         </aside>
         <style>
@@ -1752,11 +1804,18 @@
   document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.getElementById('mobile-nav-toggle');
     const navLinks = document.getElementById('primary-nav');
+    const mobileNavBreakpoint = 1024;
     
     if (!navToggle || !navLinks) {
       console.error('Nav toggle elements not found');
       return;
     }
+
+    const closeNav = () => {
+      navLinks.classList.remove('open');
+      navToggle.textContent = '☰';
+      navToggle.setAttribute('aria-label', 'Open navigation');
+    };
     
     navToggle.addEventListener('click', function(e) {
       e.preventDefault();
@@ -1768,11 +1827,16 @@
     // Close nav when clicking links
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        if (window.innerWidth <= 768) {
-          navLinks.classList.remove('open');
-          navToggle.textContent = '☰';
+        if (window.innerWidth <= mobileNavBreakpoint) {
+          closeNav();
         }
       });
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > mobileNavBreakpoint) {
+        closeNav();
+      }
     });
   });
 

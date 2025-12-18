@@ -744,6 +744,8 @@
       .hero { padding-top: 2rem; }
       .hero-title { font-size: 2rem; }
       .hero-text { font-size: 0.95rem; }
+      .hero-grid { align-items: center; text-align: center; }
+      #hero-description { min-height: 280px !important; }
       .hero-actions { flex-direction: column; width: 100%; }
       .hero-actions .btn { width: 100%; justify-content: center; }
       
@@ -831,6 +833,10 @@
       }
       
       input, select, textarea { font-size: 0.9rem; padding: 0.65rem 0.8rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce), (prefers-reduced-data: reduce) {
+      #hero-video-container { display: none; }
     }
 </style>
 <link href="https://fonts.cdnfonts.com/css/priestacy" rel="stylesheet" />
@@ -937,62 +943,43 @@
 <main> 
   <section class="hero" id="top">
     <div id="hero-video-container" style="position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;">
-        <video id="hero-video1" autoplay muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.5;">
-          <source src="Videos/Video1.mp4" type="video/mp4" />
-        </video>
-        <video id="hero-video2" muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: none; opacity: 0.5;">
-          <source src="Videos/Video2.mp4" type="video/mp4" />
-        </video>
-        <video id="hero-video3" muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: none; opacity: 0.5;">
-          <source src="Videos/Video3.mp4" type="video/mp4" />
-        </video>
-        <video id="hero-video4" muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: none; opacity: 0.5;">
-          <source src="Videos/Video4.mp4" type="video/mp4" />
-        </video>
-        <video id="hero-video5" muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: none; opacity: 0.5;">
-          <source src="Videos/Video5.mp4" type="video/mp4" />
-        </video>
-        <video id="hero-video6" muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: none; opacity: 0.5;">
-          <source src="Videos/Video6.mp4" type="video/mp4" />
-        </video>
-        <video id="hero-video7" muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: none; opacity: 0.5;">
-          <source src="Videos/Video7.mp4" type="video/mp4" />
-        </video>
-        <video id="hero-video8" muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; display: none; opacity: 0.5;">
-          <source src="Videos/Video8.mp4" type="video/mp4" />
-        </video>
+      <video id="hero-bg-video" autoplay muted playsinline preload="none" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.5;">
+        <source id="hero-bg-video-source" src="Videos/Video1.mp4" type="video/mp4" />
+      </video>
       </div>
     <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.35); z-index: 0; pointer-events: none;"></div>
       <script>
         (function() {
-          const videoNodes = document.querySelectorAll('#hero-video-container video');
-          const videos = Array.from(videoNodes);
-          if (videos.length === 0) return;
+          const video = document.getElementById('hero-bg-video');
+          const source = document.getElementById('hero-bg-video-source');
+          if (!video || !source) return;
 
-          let currentIndex = 0;
+          const playlist = [
+            'Videos/Video1.mp4',
+            'Videos/Video2.mp4',
+            'Videos/Video3.mp4',
+            'Videos/Video4.mp4',
+            'Videos/Video5.mp4',
+            'Videos/Video6.mp4',
+            'Videos/Video7.mp4',
+            'Videos/Video8.mp4'
+          ];
 
-          function showVideo(index) {
-            videos.forEach((v, i) => {
-              v.pause();
-              v.currentTime = 0;
-              v.style.display = i === index ? 'block' : 'none';
-            });
+          let index = 0;
 
-            const current = videos[index];
-            const playPromise = current.play();
-            if (playPromise && typeof playPromise.catch === 'function') {
-              playPromise.catch(() => {});
-            }
-          }
+          const playCurrent = () => {
+            source.src = playlist[index];
+            video.load();
+            const p = video.play();
+            if (p && typeof p.catch === 'function') p.catch(() => {});
+          };
 
-          videos.forEach((v, i) => {
-            v.addEventListener('ended', () => {
-              currentIndex = (i + 1) % videos.length;
-              showVideo(currentIndex);
-            });
+          video.addEventListener('ended', () => {
+            index = (index + 1) % playlist.length;
+            playCurrent();
           });
 
-          showVideo(currentIndex);
+          playCurrent();
         })();
       </script>
 

@@ -325,6 +325,61 @@
 
     h1, h2, h3, h4 { font-family: "Baloo 2", "Inter", sans-serif; letter-spacing: 0.01em; color: var(--text); }
 
+    .services-caret {
+      display: none;
+    }
+
+    #hero-stamp-slot {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 220px;
+      height: auto;
+      margin: 0 auto;
+      line-height: 0;
+      overflow: hidden;
+    }
+
+    #hero-stamp-slot:empty {
+      width: 220px;
+      height: 180px;
+      margin: 0 auto;
+    }
+
+    #hero-typing-wrap {
+      min-height: auto !important;
+    }
+
+    #hero-description {
+      min-height: auto !important;
+    }
+
+    #hero-message-container {
+      width: min(640px, 86%);
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 10px;
+    }
+
+    #hero-description {
+      text-align: left;
+      direction: ltr;
+      unicode-bidi: plaintext;
+      max-height: none;
+      overflow: visible;
+      margin-bottom: 0 !important;
+    }
+
+    @keyframes servicesCaretBlink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
     .section-header { display: flex; justify-content: space-between; gap: 1.5rem; align-items: flex-end; flex-wrap: wrap; margin-bottom: 2.4rem; }
     .section-title { font-size: clamp(1.8rem, 2.8vw, 2.4rem); margin-bottom: 0.3rem; }
     .section-subtitle { color: var(--muted); max-width: 520px; font-size: 0.95rem; }
@@ -351,6 +406,7 @@
     .hero-actions { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.2rem; }
 
     .hero-logo-stamp { position: relative; }
+    .hero-logo-stamp img { display: block; }
     .hero-logo-stamp .stamp-text {
       display: block;
       position: absolute;
@@ -666,7 +722,24 @@
       #hero-description {
         font-size: 1.35rem !important;
         line-height: 1.7 !important;
-        min-height: 340px !important;
+        min-height: auto !important;
+        margin: 1.2rem 0 0.2rem 0 !important;
+      }
+
+      #hero-typing-wrap {
+        min-height: auto !important;
+      }
+
+      #hero-stamp-slot {
+        margin-top: 0;
+      }
+
+      #hero-message-container {
+        height: auto;
+      }
+
+      #hero-description {
+        max-height: none;
       }
       .typing-particle {
         width: 150px !important;
@@ -729,7 +802,22 @@
       #hero-section-grid ul {
         display: block !important;
       }
+
+      #hero-section-grid #services-list {
+        display: none !important;
+      }
+
       #services-typing-mobile {
+        display: block !important;
+        margin-top: 1rem;
+        color: var(--muted);
+        font-size: 0.95rem;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        min-height: 1.5em;
+      }
+
+      .services-caret {
         display: none !important;
       }
 
@@ -827,7 +915,24 @@
       #hero-description {
         font-size: 1.15rem !important;
         line-height: 1.6 !important;
-        min-height: 290px !important;
+        min-height: auto !important;
+        margin: 1rem 0 0.15rem 0 !important;
+      }
+
+      #hero-typing-wrap {
+        min-height: auto !important;
+      }
+
+      #hero-stamp-slot {
+        margin-top: 0;
+      }
+
+      #hero-message-container {
+        height: auto;
+      }
+
+      #hero-description {
+        max-height: none;
       }
       .typing-particle {
         width: 100px !important;
@@ -838,7 +943,7 @@
     }
 
     @media (prefers-reduced-motion: reduce), (prefers-reduced-data: reduce) {
-      #hero-video-container { display: none; }
+      #hero-video-container { opacity: 0.18; }
     }
 </style>
 <link href="https://fonts.cdnfonts.com/css/priestacy" rel="stylesheet" />
@@ -956,9 +1061,7 @@
           const source = document.getElementById('hero-bg-video-source');
           if (!video || !source) return;
 
-          const isMobile = window.innerWidth <= 768;
-          const suffix = isMobile ? '-720' : '';
-          const playlist = Array.from({ length: 6 }, (_, i) => `Videos/Video${i + 1}${suffix}.mp4`);
+          const playlist = Array.from({ length: 6 }, (_, i) => `Videos/Video${i + 1}.mp4`);
 
           let index = 0;
           let stallTimer = null;
@@ -1014,12 +1117,15 @@
     <div class="container hero-grid">
       <h1 class="hero-title">Housewarmings & Birthdays Designed for <span>Bengaluru</span></h1>
       
-      <div style="position: relative; min-height: 450px; height: auto;">
+      <div id="hero-typing-wrap" style="position: relative; min-height: 450px; height: auto;">
         <div id="typing-particles" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 0; overflow: hidden;"></div>
-        <p class="hero-text" id="hero-description" style="font-family: 'Priestacy', 'Baloo 2', cursive; font-size: 1.7rem; margin: 2rem 0; line-height: 1.9; white-space: pre-wrap; position: relative; z-index: 2; min-height: 450px;">
-        </p>
+        <div id="hero-message-container">
+          <p class="hero-text" id="hero-description" style="font-family: 'Priestacy', 'Baloo 2', cursive; font-size: 1.7rem; margin: 2rem 0; line-height: 1.9; white-space: pre-wrap; position: relative; z-index: 2; min-height: 450px;">
+          </p>
+          <div id="hero-stamp-slot" aria-hidden="true"></div>
+        </div>
       </div>
-      <div id="hero-divider" style="width: min(640px, 86%); height: 1px; background: linear-gradient(90deg, transparent, rgba(255, 196, 135, 0.6), transparent); margin: 1.5rem auto; opacity: 0; transition: opacity 0.8s ease;"></div>
+      <div id="hero-divider" style="width: min(640px, 86%); height: 1px; background: linear-gradient(90deg, transparent, rgba(255, 196, 135, 0.6), transparent); margin: 1.5rem auto; opacity: 0.7; transition: opacity 0.8s;"></div>
       <style>
         .typing-particle {
           position: absolute;
@@ -1042,9 +1148,9 @@
           100% { opacity: 0; transform: scale(0.8); }
         }
         @keyframes fadeInStamp {
-          0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-          60% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
-          100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+          0% { opacity: 0; transform: scale(0.5); }
+          60% { opacity: 1; transform: scale(1.1); }
+          100% { opacity: 1; transform: scale(1); }
         }
       </style>
       <style>
@@ -1120,17 +1226,24 @@
             setTimeout(() => {
               const heroDivider = document.getElementById('hero-divider');
               if (heroDivider) {
-                heroDivider.style.opacity = '0.7';
+                heroDivider.style.opacity = getComputedStyle(heroDivider).opacity;
               }
             }, 300);
             
             // Add logo stamp after typing completes - positioned below text
             setTimeout(() => {
+              const stampSlot = document.getElementById('hero-stamp-slot');
+              if (!stampSlot) return;
+
               const logoStamp = document.createElement('div');
               logoStamp.className = 'hero-logo-stamp';
-              logoStamp.style.cssText = 'position: absolute; left: 50%; top: 70%; transform: translate(-50%, -50%); opacity: 0; animation: fadeInStamp 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; pointer-events: none; z-index: 0;';
-              logoStamp.innerHTML = '<img src="images/mythri-loading.png" alt="Mythri Events" style="width: 280px; height: 280px; opacity: 0.25;" /><span class="stamp-text"><span class="stamp-team">Team,</span><span class="stamp-brand">Mythri Events</span></span>';
-              heroDesc.parentElement.appendChild(logoStamp);
+              logoStamp.style.cssText = 'position: relative; opacity: 1; pointer-events: none; z-index: 0;';
+
+              const stampSize = 180;
+              logoStamp.innerHTML = `<img src="images/mythri-loading.png" alt="Mythri Events" style="width: ${stampSize}px; height: ${stampSize}px; opacity: 0.25;" /><span class="stamp-text"><span class="stamp-team">Team,</span><span class="stamp-brand">Mythri Events</span></span>`;
+
+              stampSlot.innerHTML = '';
+              stampSlot.appendChild(logoStamp);
             }, 800);
           }
         }
@@ -1200,8 +1313,8 @@
 
       <div id="hero-section-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0 0 0;">
         <div class="glass-card" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); border-radius: 40px; padding: 2.2rem;">
-          <h3 style="color: var(--primary); font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; letter-spacing: 0.03em; text-transform: uppercase;">Our Event Planning Services</h3>
-          <ul style="list-style: none; padding: 0; margin: 0; color: var(--muted); font-size: 0.98rem; line-height: 2; text-transform: uppercase;">
+          <h3 style="color: var(--primary); font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; letter-spacing: 0.03em; text-transform: uppercase;">Our Event Planning Services<span class="services-caret" aria-hidden="true"></span></h3>
+          <ul id="services-list" style="list-style: none; padding: 0; margin: 0; color: var(--muted); font-size: 0.98rem; line-height: 2; text-transform: uppercase;">
             <li style="padding: 0.4rem 0; padding-left: 1.5rem; position: relative;">
               <span style="position: absolute; left: 0; color: var(--primary); font-weight: bold;">✓</span>
               Housewarming & Gruha Pravesh events
@@ -1861,7 +1974,7 @@
 <footer>
   <div class="container footer-row">
     <div>© <span id="year"></span> Mythri Events. Designed with love in Bengaluru.</div>
-    <div class="footer-links">
+    <div class="footer-links" style="display: none; @media (max-width: 500px) { display: none; }">
       <a href="#services">Services</a>
       <a href="#gallery">Collage</a>
       <a href="#contact">Contact</a>
